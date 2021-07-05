@@ -1,2 +1,1 @@
-# arch-config
 # archlinux-config
