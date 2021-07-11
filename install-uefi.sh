@@ -31,11 +31,12 @@ echo root:password | chpasswd
 # --tools and software--
 # pacman -S gvfs gvfs-smb nfs-utils inetutils dnsutils hplip pipewire pipewire-alsa pipewire-pulse pipewire-jack openssh rsync tlp vde2 openbsd-netcat iptables-nft ipset firewalld nss-mdns terminus-font
 
-pacman -Sy --needed --noconfirm grub efibootmgr os-prober networkmanager acpi acpi_call acpid
-#pacman -Sy --needed --noconfirm bluez bluez-utils cups xdg-users-dirs xdg-utils alsa-utils dialog wpa_supplicant 
-#pacman -Sy --needed --noconfirm pulseaudio pulseaudiio-bluetooth git reflector bash-completion alacritty
-#pacman -Sy --needed --noconfirm apparmor ntfs-3g mtools dosfstools base-devel linux-headers
-#pacman -Sy --needed --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq flatpak sof-firmware avahi
+pacman -Syy
+pacman -S --needed --noconfirm grub efibootmgr os-prober networkmanager acpi acpi_call acpid
+pacman -S --needed --noconfirm bluez bluez-utils cups xdg-users-dirs xdg-utils alsa-utils dialog wpa_supplicant 
+pacman -S --needed --noconfirm pulseaudio pulseaudio-bluetooth git reflector bash-completion alacritty
+pacman -S --needed --noconfirm apparmor ntfs-3g mtools dosfstools base-devel linux-headers
+pacman -S --needed --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq flatpak sof-firmware avahi
 
 # --video drivers--
 # pacman -S --noconfirm xf86-video-amdgpu
