@@ -45,7 +45,7 @@ pacman -Sy --needed --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf brid
 # pacman -S broadcom-wl-dkms
 
 # --GRUB installation--
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # --Services--
