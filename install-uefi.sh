@@ -1,44 +1,61 @@
 #!/bin/bash
 
 # Archlinux configuration script
+# 
+# REQUIREMENTS:
+# 
+# 
 
 # --Timezone--
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 hwclock --systohc
 
 # --Locales--
-sed -i '177s/.//' /etc/locale.gen
+#sed -i '177s/#//' /etc/locale.gen          #US English
+sed -i '200s/#//' /etc/locale.gen           #SP Spanish
 locale-gen
+
 echo "LANG=es_ES.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=es_ES.UTF-8" >> /etc/vconsole.conf
+echo "KEYMAP=es" >> /etc/vconsole.conf
 
 # --Network
-echo "arch" >> /etc/hostname
-echo "127.0.0.1 localhost" >> /etc/hosts
-echo "::1       localhost" >> /etc/hosts
+echo "archie" >> /etc/hostname
+
+echo "127.0.0.1 localhost" >> /etc/host
+echo "::1       localhost" >> /etc/host
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 
 # --root user password--
 echo root:password | chpasswd
 
 # --tools and software--
-pacman -S grub efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font
+# pacman -S gvfs gvfs-smb nfs-utils inetutils dnsutils hplip pipewire pipewire-alsa pipewire-pulse pipewire-jack openssh rsync tlp vde2 openbsd-netcat iptables-nft ipset firewalld nss-mdns terminus-font
+
+pacman -Syy
+pacman -S --needed --noconfirm grub efibootmgr os-prober networkmanager acpi acpi_call acpid
+pacman -S --needed --noconfirm bluez bluez-utils cups xdg-users-dirs xdg-utils alsa-utils dialog wpa_supplicant 
+pacman -S --needed --noconfirm pulseaudio pulseaudio-bluetooth git reflector bash-completion alacritty
+pacman -S --needed --noconfirm apparmor ntfs-3g mtools dosfstools base-devel linux-headers
+pacman -S --needed --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq flatpak sof-firmware avahi
 
 # --video drivers--
 # pacman -S --noconfirm xf86-video-amdgpu
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
+# --wirelwss drivers--
+# pacman -S broadcom-wl-dkms
+
 # --GRUB installation--
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # --Services--
 systemctl enable NetworkManager
-systemctl enable bluetooth
+systemctl enable bluetooth.service
 systemctl enable cups.service
-systemctl enable sshd
+#systemctl enable sshd
 systemctl enable avahi-daemon
-systemctl enable tlp # You can comment this command out if you didn't install tlp, see above
+#systemctl enable tlp 
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable libvirtd
@@ -55,3 +72,4 @@ echo "jjimenez ALL=(ALL) ALL" >> /etc/sudoers.d/jjimenez
 
 # --Finished--
 echo "Done! Type exit, umount -a and reboot."
+
