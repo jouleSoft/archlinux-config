@@ -23,7 +23,7 @@ echo "archie" >> /etc/hostname
 
 echo "127.0.0.1 localhost" >> /etc/host
 echo "::1       localhost" >> /etc/host
-echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
+echo "127.0.1.1 arch.localdomain archie" >> /etc/hosts
 
 # --root user password--
 echo root:password | chpasswd
