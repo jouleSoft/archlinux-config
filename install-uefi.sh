@@ -31,42 +31,11 @@ echo root:password | chpasswd
 # --tools and software--
 # pacman -S gvfs gvfs-smb nfs-utils inetutils dnsutils hplip pipewire pipewire-alsa pipewire-pulse pipewire-jack openssh rsync tlp vde2 openbsd-netcat iptables-nft ipset firewalld nss-mdns terminus-font
 
-pacman -S grub \
-efibootmgr \
-networkmanager \
-dialog \
-wpa_supplicant \
-mtools \
-dosfstools \
-base-devel \
-linux-headers \
-bluez \
-bluez-utils \
-cups \
-xdg-users-dirs \
-xdg-utils \
-alsa-utils \
-pulseaudio \
-pulseaudiio-bluetooth \
-git \
-reflector \
-apparmor \
-acpi \
-acpi_call \
-acpid \
-os-prober \
-ntfs-3g\
-virt-manager \
-qemu \
-qemu-arch-extra \
-edk2-ovmf \
-bridge-utils \
-dnsmasq \
-flatpak \
-sof-firmware \
-avahi \
-bash-completion \
-alacritty
+pacman -Sy --needed --noconfirm grub efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools base-devel linux-headers
+pacman -Sy --needed --noconfirm bluez bluez-utils cups xdg-users-dirs xdg-utils alsa-utils
+pacman -Sy --needed --noconfirm pulseaudio pulseaudiio-bluetooth git reflector 
+pacman -Sy --needed --noconfirm apparmor acpi acpi_call acpid os-prober ntfs-3g 
+pacman -Sy --needed --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq flatpak sof-firmware avahi bash-completion alacritty
 
 # --video drivers--
 # pacman -S --noconfirm xf86-video-amdgpu
