@@ -6,7 +6,7 @@
 # 
 # 
 
-# --Timezone--
+# --Date and Time--
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 hwclock --systohc
 
@@ -14,13 +14,12 @@ hwclock --systohc
 #sed -i '177s/#//' /etc/locale.gen          #US English
 sed -i '200s/#//' /etc/locale.gen           #SP Spanish
 locale-gen
-
+#
 echo "LANG=es_ES.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=es" >> /etc/vconsole.conf
 
 # --Network
 echo "archie" >> /etc/hostname
-
 echo "127.0.0.1 localhost" >> /etc/host
 echo "::1       localhost" >> /etc/host
 echo "127.0.1.1 arch.localdomain archie" >> /etc/hosts
@@ -28,15 +27,19 @@ echo "127.0.1.1 arch.localdomain archie" >> /etc/hosts
 # --root user password--
 echo root:password | chpasswd
 
-# --tools and software--
-# pacman -S gvfs gvfs-smb nfs-utils inetutils dnsutils hplip pipewire pipewire-alsa pipewire-pulse pipewire-jack openssh rsync tlp vde2 openbsd-netcat iptables-nft ipset firewalld nss-mdns terminus-font
-
+# Refresh server list
 pacman -Syy
-pacman -S --needed --noconfirm grub os-prober networkmanager acpi acpi_call acpid
-pacman -S --needed --noconfirm xdg-users-dirs xdg-utils alsa-utils dialog wpa_supplicant 
-pacman -S --needed --noconfirm pulseaudio git reflector bash-completion alacritty
-pacman -S --needed --noconfirm apparmor ntfs-3g mtools dosfstools base-devel linux-headers
-pacman -S --needed --noconfirm flatpak sof-firmware avahi sudo
+# --bootloader
+pacman -S --needed --noconfirm grub os-prober
+# --system utils--
+pacman -S --needed --noconfirm xdg-users-dirs xdg-utils apparmor ntfs-3g reflector mtools dosfstools base-devel linux-headers flatpak sudo 
+# --services
+pacman -S --needed --noconfirm pulseaudio sof-firmware acpi acpi_call acpid alsa-utils
+# --network
+pacman -S --needed --noconfirm dialog wpa_supplicant avahi openssh networkmanager
+# --tools--
+pacman -S --needed --noconfirm bash-completion alacritty git xfce4-terminal
+# --Graphical environment--
 
 # --video drivers--
 # pacman -S --noconfirm xf86-video-amdgpu
@@ -51,7 +54,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # --Services--
 systemctl enable NetworkManager
-#systemctl enable sshd
+systemctl enable sshd
 systemctl enable avahi-daemon
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
