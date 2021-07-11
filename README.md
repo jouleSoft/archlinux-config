@@ -44,5 +44,5 @@ codefactor-badge: True
 <!-- end prerequisites -->
 
 <!-- start examples -->
-## Examples
+## Configuration
 <!-- end examples -->
