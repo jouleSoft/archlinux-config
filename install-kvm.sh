@@ -36,7 +36,7 @@ pacman -S --needed --noconfirm grub os-prober networkmanager acpi acpi_call acpi
 pacman -S --needed --noconfirm xdg-users-dirs xdg-utils alsa-utils dialog wpa_supplicant 
 pacman -S --needed --noconfirm pulseaudio git reflector bash-completion alacritty
 pacman -S --needed --noconfirm apparmor ntfs-3g mtools dosfstools base-devel linux-headers
-pacman -S --needed --noconfirm flatpak sof-firmware avahi
+pacman -S --needed --noconfirm flatpak sof-firmware avahi sudo
 
 # --video drivers--
 # pacman -S --noconfirm xf86-video-amdgpu
