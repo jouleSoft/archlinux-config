@@ -31,10 +31,10 @@ echo root:password | chpasswd
 # --tools and software--
 # pacman -S gvfs gvfs-smb nfs-utils inetutils dnsutils hplip pipewire pipewire-alsa pipewire-pulse pipewire-jack openssh rsync tlp vde2 openbsd-netcat iptables-nft ipset firewalld nss-mdns terminus-font
 
-pacman -Sy --needed --noconfirm grub efibootmgr networkmanager acpi acpi_call acpid
+pacman -Sy --needed --noconfirm grub efibootmgr os-prober networkmanager acpi acpi_call acpid
 #pacman -Sy --needed --noconfirm bluez bluez-utils cups xdg-users-dirs xdg-utils alsa-utils dialog wpa_supplicant 
 #pacman -Sy --needed --noconfirm pulseaudio pulseaudiio-bluetooth git reflector bash-completion alacritty
-#pacman -Sy --needed --noconfirm apparmor os-prober ntfs-3g mtools dosfstools base-devel linux-headers
+#pacman -Sy --needed --noconfirm apparmor ntfs-3g mtools dosfstools base-devel linux-headers
 #pacman -Sy --needed --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq flatpak sof-firmware avahi
 
 # --video drivers--
@@ -50,15 +50,15 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # --Services--
 systemctl enable NetworkManager
-#systemctl enable bluetooth
-#systemctl enable cups.service
+systemctl enable bluetooth.service
+systemctl enable cups.service
 #systemctl enable sshd
-#systemctl enable avahi-daemon
+systemctl enable avahi-daemon
 #systemctl enable tlp 
-#systemctl enable reflector.timer
-#systemctl enable fstrim.timer
-#systemctl enable libvirtd
-#systemctl enable firewalld
+systemctl enable reflector.timer
+systemctl enable fstrim.timer
+systemctl enable libvirtd
+systemctl enable firewalld
 systemctl enable acpid
 
 # --User configuration--
