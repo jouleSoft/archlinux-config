@@ -60,7 +60,6 @@ systemctl enable acpid
 # --User configuration--
 useradd -m jjimenez
 echo jjimenez:password | chpasswd
-usermod -aG libvirt jjimenez
 
 # --sudo configuration--
 echo "jjimenez ALL=(ALL) ALL" >> /etc/sudoers.d/jjimenez
