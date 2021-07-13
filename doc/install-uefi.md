@@ -62,4 +62,8 @@ The latter makes configurations according to the script. See the differences fol
 * [install-kvm.sh](doc/install-kvm.md)
 * [install-uefi.sh](doc/install-uefi.md)
 
+| PACKAGE | DESCRIPTION |
+|---------|-------------|
+|         |             |
+
 <!-- end examples -->
